@@ -47,10 +47,11 @@ const CreatePage = () => {
               onChange={(e) => setVehicle({...vehicle, model: e.target.value})}
             />
             <Button 
+              bg={"green.500"}
               colorScheme={"blue"} 
               w={"full"} 
               mt={4}
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit()}
             >
               Add whish
             </Button>
