@@ -2,7 +2,7 @@ import { Button, Card, CardBody, Flex, HStack, Text } from '@chakra-ui/react';
 import { FaRegTrashAlt, FaRegEdit  } from 'react-icons/fa';
 import { useColorModeValue } from '../ui/color-mode';
 
-const Whish = () => {
+const Whish = ( { whish }) => {
   return (
     <Card.Root w={"full"} bg={useColorModeValue("gray.100", "gray.700")}>
             <CardBody >
@@ -12,7 +12,7 @@ const Whish = () => {
                     justifyContent={"space-between"}
                     gap={4}
                 >
-                    <Text>I want to drive Honda Gold Wing, it's a type of motorcycle.</Text>
+                    <Text>I want to drive {whish.brand} {whish.model}, it's a type of a {whish.type}.</Text>
 
                     <HStack>
                         <Button 
