@@ -1,17 +1,42 @@
-import { Box, Container, Heading, VStack, Input, Button } from '@chakra-ui/icons';
+import { Box, Container, Heading, VStack, Input, Button } from '@chakra-ui/react';
 import { useColorModeValue } from '../ui/color-mode';
 import { useState } from 'react';
+import { useWhishStore } from '@/store/whish';
+import { toaster } from '@/components/ui/toaster';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePage = () => {
-
-  const [vehicle, setVehicle] = useState({
+  const navigate = useNavigate();
+  const [newWhish, setNewWhish] = useState({
     type: "",
     brand: "",
     model: "",
   });
 
-  const handleSubmit = () => {
-    console.log("Hello");
+  const { createWhish } = useWhishStore();
+
+  const handleSubmit = async () => {
+    
+    const { success, message } = createWhish(newWhish);
+
+    if (!success) {
+      toaster.error({
+        title: "Error",
+        description: message,
+        status: "error",
+        isClosable: true,
+      })
+    } else {
+      toaster.subscribe({
+        title: "Success",
+        description: message,
+        status: "success",
+        isClosable: true,
+      })
+    }
+
+    setNewWhish({ type: "", brand: "", model: ""});
+    navigate("/");
   };
 
   return (
@@ -22,7 +47,7 @@ const CreatePage = () => {
         </Heading>
 
         <Box 
-          w={"full"} 
+          w={{ base: "100%", sm: "50%" }} 
           bg={useColorModeValue("gray.100", "gray.700")} 
           p={6}
           borderRadius={"md"}
@@ -31,27 +56,27 @@ const CreatePage = () => {
             <Input 
               placeholder={"Type "} 
               type={"text"}
-              value={vehicle.type}
-              onChange={(e) => setVehicle({...vehicle, type: e.target.value})}
+              value={newWhish.type}
+              onChange={(e) => setNewWhish({...newWhish, type: e.target.value})}
             />
             <Input 
               placeholder={"Brand"} 
               type={"text"}
-              value={vehicle.brand}
-              onChange={(e) => setVehicle({...vehicle, brand: e.target.value})}
+              value={newWhish.brand}
+              onChange={(e) => setNewWhish({...newWhish, brand: e.target.value})}
               />
             <Input
               placeholder={"Model"} 
               type={"text"}
-              value={vehicle.model}
-              onChange={(e) => setVehicle({...vehicle, model: e.target.value})}
+              value={newWhish.model}
+              onChange={(e) => setNewWhish({...newWhish, model: e.target.value})}
             />
             <Button 
               bg={"green.500"}
               colorScheme={"blue"} 
               w={"full"} 
               mt={4}
-              onSubmit={handleSubmit()}
+              onClick={handleSubmit}
             >
               Add whish
             </Button>
