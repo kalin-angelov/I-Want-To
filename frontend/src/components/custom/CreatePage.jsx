@@ -6,86 +6,85 @@ import { toaster } from '@/components/ui/toaster';
 import { useNavigate } from 'react-router-dom';
 
 const CreatePage = () => {
-  const navigate = useNavigate();
-  const [newWhish, setNewWhish] = useState({
-    type: "",
-    brand: "",
-    model: "",
-  });
+    const navigate = useNavigate();
+    const [newWhish, setNewWhish] = useState({
+        type: "",
+        brand: "",
+        model: "",
+    });
 
-  const { createWhish } = useWhishStore();
+    const { createWhish } = useWhishStore();
 
-  const handleSubmit = async () => {
-    
-    const { success, message } = createWhish(newWhish);
+    const handleSubmit = async () => {
 
-    if (!success) {
-      toaster.error({
-        title: "Error",
-        description: message,
-        status: "error",
-        isClosable: true,
-      })
-    } else {
-      toaster.subscribe({
-        title: "Success",
-        description: message,
-        status: "success",
-        isClosable: true,
-      })
-    }
+        const { success, message } = await createWhish(newWhish);
 
-    setNewWhish({ type: "", brand: "", model: ""});
-    navigate("/");
-  };
+        if (!success) {
+            toaster.error({
+                title: "Error",
+                description: message,
+                status: "error",
+            })
+        } else {
+            toaster.success({
+                title: "Success",
+                description: message,
+                status: "success",
+            })
 
-  return (
-    <Container maxW={"container.sm"}>
-      <VStack spacing={8}>
-        <Heading as={"h1"} size={"2xl"} textAlign={"center"} m={8}>
-          Add new whish
-        </Heading>
+            setNewWhish({ type: "", brand: "", model: ""});
+            navigate("/");
+        }
 
-        <Box 
-          w={{ base: "100%", sm: "50%" }} 
-          bg={useColorModeValue("gray.100", "gray.700")} 
-          p={6}
-          borderRadius={"md"}
-        >
-          <VStack spacing={4}>
-            <Input 
-              placeholder={"Type "} 
-              type={"text"}
-              value={newWhish.type}
-              onChange={(e) => setNewWhish({...newWhish, type: e.target.value})}
-            />
-            <Input 
-              placeholder={"Brand"} 
-              type={"text"}
-              value={newWhish.brand}
-              onChange={(e) => setNewWhish({...newWhish, brand: e.target.value})}
-              />
-            <Input
-              placeholder={"Model"} 
-              type={"text"}
-              value={newWhish.model}
-              onChange={(e) => setNewWhish({...newWhish, model: e.target.value})}
-            />
-            <Button 
-              bg={"green.500"}
-              colorScheme={"blue"} 
-              w={"full"} 
-              mt={4}
-              onClick={handleSubmit}
-            >
-              Add whish
-            </Button>
+    };
 
-          </VStack>
-        </Box>
-      </VStack>
-    </Container>
-  )
-}
+    return (
+        <Container maxW={"container.sm"}>
+            <VStack spacing={8}>
+                <Heading as={"h1"} size={"2xl"} textAlign={"center"} m={8}>
+                    Add new whish
+                </Heading>
 
-export default CreatePage
+                <Box 
+                    w={{ base: "100%", sm: "50%" }} 
+                    bg={useColorModeValue("gray.100", "gray.700")} 
+                    p={6}
+                    borderRadius={"md"}
+                >
+                    <VStack spacing={4}>
+                        <Input 
+                            placeholder={"Type "} 
+                            type={"text"}
+                            value={newWhish.type}
+                            onChange={(e) => setNewWhish({...newWhish, type: e.target.value})}
+                        />
+                        <Input 
+                            placeholder={"Brand"} 
+                            type={"text"}
+                            value={newWhish.brand}
+                            onChange={(e) => setNewWhish({...newWhish, brand: e.target.value})}
+                        />
+                        <Input
+                            placeholder={"Model"} 
+                            type={"text"}
+                            value={newWhish.model}
+                            onChange={(e) => setNewWhish({...newWhish, model: e.target.value})}
+                        />
+                        <Button 
+                            bg={"green.500"}
+                            colorScheme={"blue"} 
+                            w={"full"} 
+                            mt={4}
+                            onClick={handleSubmit}
+                        >
+                            Add whish
+                        </Button>
+
+                    </VStack>
+                </Box>
+            </VStack>
+        </Container>
+    )
+};
+
+export default CreatePage;
