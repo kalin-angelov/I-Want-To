@@ -32,7 +32,22 @@ export const useWhishStore = create ((set) => ({
         });
         const data = await response.json();
         if (!data.success) return { success: false, message: data.message };
-        set(state => ({ whishes: state.whishes.filter(whish => whish._id !== id)}) );
+        set(state => ({ whishes: state.whishes.filter(whish => whish._id !== id) }));
+        return { success: true, message: data.message };
+    },
+    updateWhish: async(id, updatedWhish) => {
+        if(!updatedWhish.whish) return { success: false, message: "Please don't make empty whishes"}
+        const response = await fetch(`api/whish/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedWhish)
+        });
+
+        const data = await response.json();
+        if(!data.success) return { success: false, message: data.message }
+        set(state => ({ whishes: state.whishes.map(whish => whish._id === id ? data.data : whish) }));
         return { success: true, message: data.message };
     }
 }));
