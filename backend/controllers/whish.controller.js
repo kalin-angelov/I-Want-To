@@ -39,7 +39,7 @@ export const updateWhish = async(req, res) => {
 
     try {
         const updatedWhish = await Whish.findByIdAndUpdate(id, whish, { new: true });
-        res.status(200).json({ success: true, data: updatedWhish});
+        res.status(201).json({ success: true, data: updatedWhish});
     } catch (error) {
         console.log(`Error message: ${error.message}`);
         res.status(500).json({ success: false, message: error.message });
