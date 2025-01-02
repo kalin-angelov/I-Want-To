@@ -2,11 +2,20 @@
 
 `I Want to` is simple MERN Stack app were the user can create his own wihshlist.
 
+![Home page Screenshot](/screenshots/home-page.png)
+
 Also the user shold be abble to:
 - Create a whish
+![Create Screenshot](/screenshots/create-whish.png)
+
 - Update a whish
+![Update Screenshot](/screenshots/edit-whish.png)
+
 - Delete a whish
+![Delete Screenshot](/screenshots/delete-whish.png)
+
 - Change the theme of the app
+![Theme Screenshot](/screenshots/home-page-thame.png)
 
 ## Built with
 
