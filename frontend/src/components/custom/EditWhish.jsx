@@ -40,6 +40,7 @@ const EditWhish = ( { open, setOpen, whish }) => {
                 </DialogHeader>
                 <DialogBody>
                     <Textarea 
+                        size={"xl"}
                         value={updatedWhish.whish}
                         onChange={(e) => setUpdatedWhish({ ...updatedWhish, whish: e.target.value })}
                     />
