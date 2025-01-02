@@ -14,7 +14,7 @@ const HomePage = () => {
     },[fetchWhishes]);
 
     return (
-        <Container>
+        <Container pb={5}>
             <Heading 
                 as={"h1"} 
                 size={{ base: "2xl", sm: "3xl" }} 
