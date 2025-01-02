@@ -49,6 +49,7 @@ const CreateWhish = () => {
                 >
                     <Text mb={4}>Write your whish here:</Text>
                     <Textarea 
+                        size={"xl"}
                         placeholder='I want to...'
                         type={"text"}
                         value={newWhish.whish}
