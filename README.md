@@ -28,6 +28,7 @@ Also the user should be able to:
 
 ### Backend
 
+- [wish-list](https://github.com/kalin-angelov/wish-list) - Spring Boot
 
 ## Usage
 
