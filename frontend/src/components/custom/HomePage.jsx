@@ -1,17 +1,17 @@
 import { Container, Heading, Span, Text } from '@chakra-ui/react';
-import { useWhishStore } from '@/store/whish';
+import { useWishStore } from '@/store/wish';
 import { useEffect } from 'react';
 
-import WhishList from './WhishList';
+import WishList from './WishList';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
 
-    const { fetchWhishes, whishes } = useWhishStore();
+    const { fetchWishes, wishes } = useWishStore();
 
     useEffect(() => {
-        fetchWhishes();
-    },[fetchWhishes]);
+        fetchWishes();
+    },[wishes]);
 
     return (
         <Container pb={5}>
@@ -21,17 +21,17 @@ const HomePage = () => {
                 textAlign={"center"} 
                 m={8}
             >
-                My whish list
+                My wish list
             </Heading>
             
-            {whishes && <WhishList />}
+            {wishes && <WishList />}
 
-            {whishes.length == 0 &&
+            {wishes.length == 0 &&
                 <Text textAlign={"center"}>
-                    Whish list is empty. 
+                    Wish list is empty. 
                     <Link to={"/create"}>
                         <Text as={"span"} p={1} color={"blue.400"}>
-                            Make a whish🌠
+                            Make a wish🌠
                         </Text>
                     </Link>
                 </Text>

@@ -1,15 +1,15 @@
 import { Card, CardBody, Flex, HStack, IconButton, Text } from '@chakra-ui/react';
 import { FaRegTrashAlt, FaRegEdit  } from 'react-icons/fa';
 import { useColorModeValue } from '../ui/color-mode';
-import { useWhishStore } from '@/store/whish';
+import { useWishStore } from '@/store/wish';
 import { toaster } from '@/components/ui/toaster';
 
-import EditWhish from './EditWhish';
+import EditWish from './EditWish';
 import { useState } from 'react';
 
-const Whish = ( { whish }) => {
+const Wish = ( { wish }) => {
 
-    const { deleteWhish } = useWhishStore();
+    const { deleteWish } = useWishStore();
     const [open, setOpen] = useState(false);
 
     const openEditModal = () => {
@@ -17,7 +17,7 @@ const Whish = ( { whish }) => {
     };
 
     const onDelete = async (id) => {
-        const { success, message } = await deleteWhish(id);
+        const { success, message } = await deleteWish(id);
 
         if (!success) {
             toaster.error({
@@ -42,23 +42,23 @@ const Whish = ( { whish }) => {
                 justifyContent={"space-between"}
                 gap={4}
             >
-                <Text>{whish.whish}</Text>
+                <Text>{wish.description}</Text>
 
                 <HStack>
                     <IconButton bg={"blue.300"} onClick={openEditModal}>
                         <FaRegEdit />
                     </IconButton>
 
-                    <IconButton bg={"red.500"} onClick={() => onDelete(whish._id)}>
+                    <IconButton bg={"red.500"} onClick={() => onDelete(wish.id)}>
                         <FaRegTrashAlt />
                     </IconButton>
                 </HStack>
             </Flex>
         </CardBody>
 
-        <EditWhish open={open} setOpen={setOpen} whish={whish} />
+        <EditWish open={open} setOpen={setOpen} wish={wish} />
     </Card.Root>
   );
 };
 
-export default Whish;
+export default Wish;

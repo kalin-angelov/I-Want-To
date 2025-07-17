@@ -1,20 +1,20 @@
 
 import { Button } from '@/components/ui/button';
 import { DialogActionTrigger, DialogBody, DialogCloseTrigger, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle } from '@/components/ui/dialog';
-import { useWhishStore } from '@/store/whish';
+import { useWishStore } from '@/store/wish';
 import { Textarea } from '@chakra-ui/react';
 import { useState } from 'react';
 import { toaster } from '../ui/toaster';
 import { useColorModeValue } from '../ui/color-mode';
 
-const EditWhish = ( { open, setOpen, whish }) => {
+const EditWish = ( { open, setOpen, wish }) => {
 
-    const { updateWhish } = useWhishStore();
-    const [updatedWhish, setUpdatedWhish] = useState(whish);
+    const { updateWish } = useWishStore();
+    const [updatedWish, setUpdatedWish] = useState(wish);
 
-    const saveUpdatedWhish = async ( id, correctedWhish ) => {
+    const saveUpdatedWish = async ( id, correctedWish ) => {
 
-        const { success, message } = await updateWhish(id, correctedWhish);
+        const { success, message } = await updateWish(id, correctedWish);
         
         if (!success) {
             toaster.error({
@@ -24,7 +24,7 @@ const EditWhish = ( { open, setOpen, whish }) => {
         } else {
             toaster.success({
                 title: "Success",
-                description: "Whish updated successfully",
+                description: "Wish updated successfully",
             })
 
             setOpen(false);
@@ -36,20 +36,20 @@ const EditWhish = ( { open, setOpen, whish }) => {
   
             <DialogContent bg={useColorModeValue("gray.100", "gray.700")}>
                 <DialogHeader>
-                    <DialogTitle>Correct your Whish</DialogTitle>
+                    <DialogTitle>Correct your Wish</DialogTitle>
                 </DialogHeader>
                 <DialogBody>
                     <Textarea 
                         size={"xl"}
-                        value={updatedWhish.whish}
-                        onChange={(e) => setUpdatedWhish({ ...updatedWhish, whish: e.target.value })}
+                        value={updatedWish.wish}
+                        onChange={(e) => setUpdatedWish({ ...updatedWish, wish: e.target.value })}
                     />
                 </DialogBody>
                 <DialogFooter>
                     <DialogActionTrigger asChild>
                     <Button variant="outline">Cancel</Button>
                     </DialogActionTrigger>
-                    <Button onClick={() => saveUpdatedWhish(whish._id, updatedWhish)}>Save</Button>
+                    <Button onClick={() => saveUpdatedWish(wish.id, updatedWish)}>Save</Button>
                 </DialogFooter>
                 <DialogCloseTrigger />
             </DialogContent>
@@ -57,4 +57,4 @@ const EditWhish = ( { open, setOpen, whish }) => {
   )
 };
 
-export default EditWhish;
+export default EditWish;

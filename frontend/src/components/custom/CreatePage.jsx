@@ -1,23 +1,23 @@
 import { Box, Container, Heading, VStack, Input, Button } from '@chakra-ui/react';
 import { useColorModeValue } from '../ui/color-mode';
 import { useState } from 'react';
-import { useWhishStore } from '@/store/whish';
+import { useWishStore } from '@/store/wish';
 import { toaster } from '@/components/ui/toaster';
 import { useNavigate } from 'react-router-dom';
 
 const CreatePage = () => {
     const navigate = useNavigate();
-    const [newWhish, setNewWhish] = useState({
+    const [newWish, setNewWish] = useState({
         type: "",
         brand: "",
         model: "",
     });
 
-    const { createWhish } = useWhishStore();
+    const { createWish } = useWishStore();
 
     const handleSubmit = async () => {
 
-        const { success, message } = await createWhish(newWhish);
+        const { success, message } = await createWish(newWish);
 
         if (!success) {
             toaster.error({
@@ -32,7 +32,7 @@ const CreatePage = () => {
                 status: "success",
             })
 
-            setNewWhish({ type: "", brand: "", model: ""});
+            setNewWish({ type: "", brand: "", model: ""});
             navigate("/");
         }
 
@@ -42,7 +42,7 @@ const CreatePage = () => {
         <Container maxW={"container.sm"}>
             <VStack spacing={8}>
                 <Heading as={"h1"} size={"2xl"} textAlign={"center"} m={8}>
-                    Add new whish
+                    Add new wish
                 </Heading>
 
                 <Box 
@@ -55,20 +55,20 @@ const CreatePage = () => {
                         <Input 
                             placeholder={"Type "} 
                             type={"text"}
-                            value={newWhish.type}
-                            onChange={(e) => setNewWhish({...newWhish, type: e.target.value})}
+                            value={newWish.type}
+                            onChange={(e) => setNewWish({...newWish, type: e.target.value})}
                         />
                         <Input 
                             placeholder={"Brand"} 
                             type={"text"}
-                            value={newWhish.brand}
-                            onChange={(e) => setNewWhish({...newWhish, brand: e.target.value})}
+                            value={newWish.brand}
+                            onChange={(e) => setNewWish({...newWish, brand: e.target.value})}
                         />
                         <Input
                             placeholder={"Model"} 
                             type={"text"}
-                            value={newWhish.model}
-                            onChange={(e) => setNewWhish({...newWhish, model: e.target.value})}
+                            value={newWish.model}
+                            onChange={(e) => setNewWish({...newWish, model: e.target.value})}
                         />
                         <Button 
                             bg={"green.500"}
@@ -77,7 +77,7 @@ const CreatePage = () => {
                             mt={4}
                             onClick={handleSubmit}
                         >
-                            Add whish
+                            Add wish
                         </Button>
 
                     </VStack>

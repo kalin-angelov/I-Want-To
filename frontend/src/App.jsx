@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster"
 import Navbar from './components/custom/Navbar';
 import HomePage from './components/custom/HomePage';
 import CreatePage from './components/custom/CreatePage';
-import CreateWhish from './components/custom/CreateWhish';
+import CreateWhish from './components/custom/CreateWish';
 
 
 function App() {

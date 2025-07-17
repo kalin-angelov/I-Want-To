@@ -3,17 +3,17 @@ import { useColorModeValue } from '../ui/color-mode';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toaster } from '@/components/ui/toaster';
-import { useWhishStore } from '@/store/whish';
+import { useWishStore } from '@/store/wish';
 
 
-const CreateWhish = () => {
+const CreateWish = () => {
 
     const navigate = useNavigate();
-    const[newWhish, setNewWhish] = useState({ whish: "" });
-    const { createWhish } = useWhishStore();
+    const[newWish, setNewWish] = useState({ wish: "" });
+    const { createWish } = useWishStore();
 
     const handleSubmit = async () => {
-        const { success, message } = await createWhish(newWhish);
+        const { success, message } = await createWish(newWish);
         
         if (!success) {
             toaster.error({
@@ -28,7 +28,7 @@ const CreateWhish = () => {
                 status: "success",
             })
 
-            setNewWhish({ whish: ""});
+            setNewWish({ wish: ""});
             navigate("/");
         }
         
@@ -38,7 +38,7 @@ const CreateWhish = () => {
         <Container maxW={"container.sm"}>
             <VStack spacing={8}>
                 <Heading as={"h1"} textAlign={"left"} m={8} size={"2xl"}>
-                    Add a whish
+                    Add a wish
                 </Heading>
 
                 <Box 
@@ -47,13 +47,13 @@ const CreateWhish = () => {
                     p={6}
                     borderRadius={"md"}    
                 >
-                    <Text mb={4}>Write your whish here:</Text>
+                    <Text mb={4}>Write your wish here:</Text>
                     <Textarea 
                         size={"xl"}
                         placeholder='I want to...'
                         type={"text"}
-                        value={newWhish.whish}
-                        onChange={(e) => setNewWhish({...newWhish, whish: e.target.value})}
+                        value={newWish.wish}
+                        onChange={(e) => setNewWish({...newWish, wish: e.target.value})}
                     />
 
                     <Button 
@@ -63,7 +63,7 @@ const CreateWhish = () => {
                         mt={4}
                         onClick={handleSubmit}
                     >
-                        Add whish
+                        Add wish
                     </Button>
                 </Box>
             </VStack>
@@ -71,4 +71,4 @@ const CreateWhish = () => {
   );
 };
 
-export default CreateWhish;
+export default CreateWish;
