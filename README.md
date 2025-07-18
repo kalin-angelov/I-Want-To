@@ -35,9 +35,7 @@ Also the user should be able to:
 ### Installation
 
 1. Clone this repository on your local machine.
-2. Open a terminal and run the command `npm install` or `npm i` to install the necessary dependencies for the backend.
-3. Open new terminal and navigate to the frontend directory with the command `cd frontend`.
-4. Run again the command `npm install` or `npm i` to install the necessary dependencies for the frontend.
+2. Open a terminal and run the command `npm install` or `npm i` to install the necessary dependencies.
 
 ### Running the Application
 
